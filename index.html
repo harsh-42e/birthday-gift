@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise for Het</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(180deg,#ffd6ea,#e6d9ff);
+text-align:center;
+overflow-x:hidden;
+}
+
+.section{
+display:none;
+padding-top:60px;
+padding-bottom:60px;
+animation:fade 1.2s;
+}
+
+.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0; transform:translateY(15px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.timer{
+font-size:36px;
+color:#ff2e7a;
+margin-top:30px;
+}
+
+.banner,.photo{
+width:92%;
+max-width:360px;
+border-radius:25px;
+box-shadow:0 8px 25px rgba(0,0,0,0.3);
+margin-top:20px;
+animation:zoom 1s ease;
+}
+
+@keyframes zoom{
+0%{transform:scale(0.97);opacity:0;}
+100%{transform:scale(1);opacity:1;}
+}
+
+button{
+padding:14px 35px;
+font-size:18px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff2e7a,#ff7aa8);
+color:white;
+margin-top:25px;
+cursor:pointer;
+box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+
+.message{
+margin:30px;
+font-size:18px;
+color:#444;
+line-height:1.6;
+}
+
+.heart{
+position:absolute;
+color:#ff4f8b;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- COUNTDOWN -->
+
+<div id="countdown" class="section active">
+<h1>A Special Surprise is Waiting for You Het 💕</h1>
+<div id="timer" class="timer"></div>
+</div>
+
+<!-- BANNER -->
+
+<div id="bannerSection" class="section">
+
+<div style="
+background:white;
+width:90%;
+max-width:420px;
+margin:auto;
+border-radius:25px;
+padding:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.25);
+">
+
+<h1 style="color:#444;">
+Happy Birthday <span style="color:#ff2e7a;">Het</span> 🎂
+</h1>
+
+<p style="color:#666;">
+A little surprise made specially for you ❤️
+</p>
+
+<h2 style="color:#ff6a00;">
+🎉 It's Your Birthday! 🎉
+</h2>
+
+<h3 style="color:#7a2cff;">
+💜 Ready for your surprise! 💜
+</h3>
+
+<p style="color:#777;">
+Something magical is about to unfold ✨
+</p>
+
+<img src="se.jpeg" class="banner">
+
+<br>
+
+<button onclick="nextSection()">🎉 Let's Celebrate</button>
+
+</div>
+
+</div>
+
+<!-- PHOTO -->
+
+<div id="photoSection" class="section">
+
+<h2>For Someone Very Special 💖</h2>
+
+<img src="es.jpeg" class="photo">
+
+<div class="message">
+To the first ever girl who stepped into my life and everything got changed! ❤️
+</div>
+
+<button onclick="nextSection()">Next ❤️</button>
+
+</div>
+
+<!-- CAT IMAGE SECTION -->
+
+<div id="catSection1" class="section">
+
+<img src="tp.jpeg" class="photo">
+
+<p class="message">
+Thanks for being the most beautiful part of my life ❤️
+</p>
+
+<button onclick="nextSection()">Final Message 💌</button>
+
+</div>
+
+<!-- FINAL MESSAGE -->
+
+<div id="thankSection" class="section">
+
+<h1>Happy Birthday Het 🎂</h1>
+
+<div class="message">
+
+Heyy you,
+
+<br><br>
+
+Happy birthday !
+
+<br><br>
+
+Hope this year brings you everything you've been wishing for and a little more than you expect.
+
+<br><br>
+
+Stay exactly the way you're — warm, genuine and a little crazy.
+
+<br><br>
+
+The world needs more people like you ❤️
+
+</div>
+
+</div>
+
+<script>
+
+let birthday = new Date().getTime() + 10000;
+
+let timer=setInterval(function(){
+
+let now=new Date().getTime();
+let distance=birthday-now;
+
+let seconds=Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("timer").innerHTML=seconds+"s";
+
+if(distance<0){
+
+clearInterval(timer);
+
+document.getElementById("countdown").classList.remove("active");
+document.getElementById("bannerSection").classList.add("active");
+
+}
+
+},1000);
+
+let sections=[
+"bannerSection",
+"photoSection",
+"catSection1",
+"thankSection"
+];
+
+let current=0;
+
+function nextSection(){
+
+document.getElementById(sections[current]).classList.remove("active");
+
+current++;
+
+document.getElementById(sections[current]).classList.add("active");
+
+}
+
+setInterval(function(){
+
+let heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove();},6000);
+
+},400);
+
+</script>
+
+</body>
+</html>
